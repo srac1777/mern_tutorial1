@@ -6,6 +6,7 @@ const User = require('../../models/User');
 
 router.get('/test', (req,res) => res.json({msg: 'Users route is working'}));
 router.post('/register', (req,res) => {
+    console.log(req.body);
     User.findOne({ email: req.body.email })
         .then(user => {
             if(user) {
@@ -18,9 +19,11 @@ router.post('/register', (req,res) => {
                     password: req.body.password
                 });
 
+
                 bcrypt.genSalt(10, (err, salt) => {
                     bcrypt.hash(newUser.password, salt, (err, hash) => {
-                        if (err) throw err;
+                        if (err) console.log(err);
+                        //  err;
                         newUser.password = hash;
                         newUser.save()
                             .then(user => res.json(user))

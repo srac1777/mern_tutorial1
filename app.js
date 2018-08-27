@@ -6,6 +6,9 @@ const db = require("./config/keys").mongoURI;
 const users = require('./routes/api/users');
 const events = require('./routes/api/events');
 
+
+app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.json());
 mongoose
     .connect(db)
     .then(() => console.log('success connection'))
@@ -14,9 +17,6 @@ mongoose
 app.get('/', (req, res) => res.send('hello cory heyy'));
 app.use('/api/users', users);
 app.use('/api/events', events);
-
-app.use(bodyParser.urlencoded({ extended: false}));
-app.use(bodyParser.json());
 
 const port = process.env.PORT || 5000;
 
