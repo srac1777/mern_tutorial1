@@ -16,7 +16,7 @@ mongoose
     .then(() => console.log('success connection'))
     .catch(err => console.log(err));
 
-// app.get('/', (req, res) => res.send('hello cory heyy'));
+// app.get('/', (req, res) => res.send('hello cory hey'));
 app.use(passport.initialize());
 app.use('/api/users', users);
 app.use('/api/events', events);
